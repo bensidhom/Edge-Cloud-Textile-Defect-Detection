@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream with Predictions</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        h1 { color: #333; }
+        img { width: 80%; max-width: 640px; border: 2px solid #333; border-radius: 10px; margin-top: 20px; }
+        .btn-container { margin-top: 20px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; background-color: #007BFF; color: white; }
+        button:hover { background-color: #0056b3; }
+    </style>
+    <script>
+        function setMode(mode) {
+            // Update the video feed source with the selected mode
+            let img = document.getElementById("stream");
+            img.src = "/video_feed?mode=" + mode + "&t=" + new Date().getTime();
+        }
+    </script>
+</head>
+<body>
+    <h1>Live Video Stream with Predictions</h1>
+    <div class="btn-container">
+        <button onclick="setMode('classification')">Classification</button>
+        <button onclick="setMode('object_detection')">Object Detection</button>
+    </div>
+    <img id="stream" src="{{ url_for('video_feed') }}?mode=classification" alt="Live Stream" width="640" height="480">
+</body>
+</html>
